@@ -14,7 +14,7 @@ import javax.swing.Timer;
 import org.snakeinc.snake.GameParams;
 import org.snakeinc.snake.exception.OutOfPlayException;
 import org.snakeinc.snake.exception.SelfCollisionException;
-import org.snakeinc.snake.model.Basket;
+import org.snakeinc.snake.model.Game;
 import org.snakeinc.snake.model.Snake;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
@@ -38,7 +38,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
     private void startGame() {
         snake = new Snake();
-        Basket.getInstance().refillIfNeeded(1);
+        Game.getCurrentGame().getBasket().refillIfNeeded(1);
         timer = new Timer(100, this);
         timer.start();
         running = true;
@@ -66,7 +66,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         if (running) {
             try {
                 snake.move(direction);
-                Basket.getInstance().refillIfNeeded(1);
+                Game.getCurrentGame().getBasket().refillIfNeeded(1);
             } catch (OutOfPlayException | SelfCollisionException exception) {
                 timer.stop();
                 running = false;

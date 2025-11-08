@@ -11,23 +11,14 @@ public class Basket {
 
     private List<Apple> apples;
 
-    private static Basket instance;
-
-    private Basket() {
+    public Basket() {
         apples = new ArrayList<>();
-    }
-
-    public static Basket getInstance() {
-        if (instance == null) {
-            instance = new Basket();
-        }
-        return instance;
     }
 
     public void addApple(Cell cell) {
         if (cell == null) {
             var random = new Random();
-            cell = Grid.getInstance()
+            cell = Game.getCurrentGame().getGrid()
                     .getTile(random.nextInt(0, GameParams.TILES_X), random.nextInt(0, GameParams.TILES_Y));
         }
         Apple apple = AppleFactory.createAppleInCell(cell);
@@ -54,6 +45,10 @@ public class Basket {
         if (missingApple > 0) {
             refill(missingApple);
         }
+    }
+
+    public void refresh() {
+        apples.clear();
     }
 
 }

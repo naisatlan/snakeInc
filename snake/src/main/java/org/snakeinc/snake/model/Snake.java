@@ -11,7 +11,7 @@ public class Snake {
 
     public Snake() {
         body = new ArrayList<>();
-        Cell head = Grid.getInstance().getTile(GameParams.SNAKE_DEFAULT_X, GameParams.SNAKE_DEFAULT_Y);
+        Cell head = Game.getCurrentGame().getGrid().getTile(GameParams.SNAKE_DEFAULT_X, GameParams.SNAKE_DEFAULT_Y);
         body.add(head);
         head.addSnake(this);
     }
@@ -27,7 +27,7 @@ public class Snake {
     public void eat(Apple apple) {
         body.addFirst(apple.getCell());
         apple.getCell().addSnake(this);
-        Basket.getInstance().removeApple(apple);
+        Game.getCurrentGame().getBasket().removeApple(apple);
     }
 
     public void move(char direction) throws OutOfPlayException, SelfCollisionException {
@@ -47,7 +47,7 @@ public class Snake {
                 x++;
                 break;
         }
-        Cell newHead = Grid.getInstance().getTile(x, y);
+        Cell newHead = Game.getCurrentGame().getGrid().getTile(x, y);
         if (newHead == null) {
             throw new OutOfPlayException();
         }

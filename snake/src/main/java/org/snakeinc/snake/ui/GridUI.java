@@ -1,8 +1,8 @@
 package org.snakeinc.snake.ui;
 
 import java.awt.Graphics;
-import org.snakeinc.snake.model.Grid;
 import org.snakeinc.snake.model.Cell;
+import org.snakeinc.snake.model.Game;
 
 public class GridUI implements Drawable {
 
@@ -20,7 +20,7 @@ public class GridUI implements Drawable {
 
     @Override
     public void draw(Graphics g) {
-        for (Cell cell : Grid.getInstance().getTiles().values()) {
+        for (Cell cell : Game.getCurrentGame().getGrid().getTiles().values()) {
             if (cell.containsAnApple() || cell.containsASnake()) {
                 new CellUI(cell, cell.getX() * GamePanel.TILE_PIXEL_SIZE,
                         cell.getY() * GamePanel.TILE_PIXEL_SIZE).draw(g);
