@@ -15,6 +15,7 @@ import org.snakeinc.snake.GameParams;
 import org.snakeinc.snake.exception.OutOfPlayException;
 import org.snakeinc.snake.exception.SelfCollisionException;
 import org.snakeinc.snake.model.Game;
+import org.snakeinc.snake.model.Direction;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
@@ -25,7 +26,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     private Timer timer;
     private Game game;
     private boolean running = false;
-    private char direction = 'R';
+    private Direction direction = Direction.R;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(GAME_PIXEL_WIDTH, GAME_PIXEL_HEIGHT));
@@ -76,23 +77,23 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_LEFT:
-                if (direction != 'R') {
-                    direction = 'L';
+                if (direction != Direction.R) {
+                    direction = Direction.L;
                 }
                 break;
             case KeyEvent.VK_RIGHT:
-                if (direction != 'L') {
-                    direction = 'R';
+                if (direction != Direction.L) {
+                    direction = Direction.R;
                 }
                 break;
             case KeyEvent.VK_UP:
-                if (direction != 'D') {
-                    direction = 'U';
+                if (direction != Direction.D) {
+                    direction = Direction.U;
                 }
                 break;
             case KeyEvent.VK_DOWN:
-                if (direction != 'U') {
-                    direction = 'D';
+                if (direction != Direction.U) {
+                    direction = Direction.D;
                 }
                 break;
         }

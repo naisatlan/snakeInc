@@ -3,6 +3,7 @@ package org.snakeinc.snake.model;
 import lombok.Getter;
 import org.snakeinc.snake.exception.OutOfPlayException;
 import org.snakeinc.snake.exception.SelfCollisionException;
+import org.snakeinc.snake.model.Direction;
 
 @Getter
 public class Game {
@@ -18,7 +19,7 @@ public class Game {
         snake = new Snake((apple, cell) -> basket.removeAppleInCell(apple,cell), grid);
     }
 
-    public void iterate(char direction) throws OutOfPlayException, SelfCollisionException {
+    public void iterate(Direction direction) throws OutOfPlayException, SelfCollisionException {
         snake.move(direction);
         basket.refillIfNeeded(1);
     }

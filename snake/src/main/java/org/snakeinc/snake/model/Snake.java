@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import org.snakeinc.snake.GameParams;
 import org.snakeinc.snake.exception.OutOfPlayException;
 import org.snakeinc.snake.exception.SelfCollisionException;
+import org.snakeinc.snake.model.Direction;
 
-public class Snake {
+public abstract sealed class Snake permits Anaconda, Python, BoaConstrictor {
 
-    private final ArrayList<Cell> body;
-    private final AppleEatenListener onAppleEatenListener;
-    private final Grid grid;
+    protected final ArrayList<Cell> body;
+    protected final AppleEatenListener onAppleEatenListener;
+    protected final Grid grid;
 
     public Snake(AppleEatenListener listener, Grid grid) {
         this.body = new ArrayList<>();
@@ -29,25 +30,22 @@ public class Snake {
     }
 
     public void eat(Apple apple, Cell cell) {
-        body.addFirst(cell);
-        cell.addSnake(this);
-        onAppleEatenListener.onAppleEaten(apple, cell);
     }
 
-    public void move(char direction) throws OutOfPlayException, SelfCollisionException {
+    public void move(Direction direction) throws OutOfPlayException, SelfCollisionException {
         int x = getHead().getX();
         int y = getHead().getY();
         switch (direction) {
-            case 'U':
+            case U:
                 y--;
                 break;
-            case 'D':
+            case D:
                 y++;
                 break;
-            case 'L':
+            case L:
                 x--;
                 break;
-            case 'R':
+            case R:
                 x++;
                 break;
         }
