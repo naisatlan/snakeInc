@@ -14,6 +14,7 @@ import javax.swing.Timer;
 import org.snakeinc.snake.GameParams;
 import org.snakeinc.snake.exception.OutOfPlayException;
 import org.snakeinc.snake.exception.SelfCollisionException;
+import org.snakeinc.snake.exception.DiedOfMalnutrition;
 import org.snakeinc.snake.model.Game;
 import org.snakeinc.snake.model.Direction;
 
@@ -58,6 +59,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         g.setFont(new Font("Arial", Font.BOLD, 20));
         FontMetrics metrics = getFontMetrics(g.getFont());
         g.drawString("Game Over", (GAME_PIXEL_WIDTH - metrics.stringWidth("Game Over")) / 2, GAME_PIXEL_HEIGHT / 2);
+        g.drawString("Score: " + Game.score, (GAME_PIXEL_WIDTH - metrics.stringWidth("Score: " + Game.score)) / 2, GAME_PIXEL_HEIGHT / 2 + 30);
     }
 
     @Override
@@ -65,7 +67,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         if (running) {
             try {
                 game.iterate(direction);
-            } catch (OutOfPlayException | SelfCollisionException exception) {
+            } catch (OutOfPlayException | SelfCollisionException | DiedOfMalnutrition exception) {
                 timer.stop();
                 running = false;
             }
