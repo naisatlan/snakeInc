@@ -9,12 +9,12 @@ public class FoodFactory {
         int foodType = random.nextInt(0, 2);
         switch(foodType) {
             case 0 -> {
-                Apple apple = new Apple(Math.random() < 0.1);
+                Apple apple = new Apple(Math.random() < org.snakeinc.snake.GameParams.APPLE_POISON_PROB);
                 cell.addFood(apple);
                 return apple;
             }
             case 1 -> {
-                Brocoli brocoli = new Brocoli(Math.random() < 0.3);
+                Brocoli brocoli = new Brocoli(Math.random() < org.snakeinc.snake.GameParams.BROCOLI_STEAMED_PROB);
                 cell.addFood(brocoli);
                 return brocoli;
             }

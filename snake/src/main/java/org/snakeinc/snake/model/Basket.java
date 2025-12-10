@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import lombok.Data;
+import org.snakeinc.snake.GameParams;
 
 @Data
 public class Basket implements SnakeObserver {
@@ -78,7 +79,7 @@ public class Basket implements SnakeObserver {
             int dx = Math.abs(headX - c.getX());
             int dy = Math.abs(headY - c.getY());
             double dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 2 && random.nextDouble() < 0.05) {
+            if (dist < GameParams.FOOD_MOVE_DISTANCE && random.nextDouble() < GameParams.FOOD_MOVE_PROB) {
                 moveFoodRandomly(c);
             }
         }
