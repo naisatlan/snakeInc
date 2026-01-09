@@ -1,9 +1,7 @@
+package com.snakeinc.api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.graphql.GraphQlProperties.Http;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.apache.catalina.connector.Response;
-import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Test;
 import com.snakeinc.api.service.PlayerService.Player;
 import com.snakeinc.api.service.PlayerService.PlayerParams;
